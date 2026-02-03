@@ -1,0 +1,21 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+
+@theme {
+  --color-winter-deep: #1a2a44;
+  --color-spring-sage: #9caf88;
+  --color-summer-yellow: #f3d35a;
+  --color-autumn-orange: #c87d4b;
+  --font-cursive: "Dancing Script", cursive;
+}
+
+:root {
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+}
