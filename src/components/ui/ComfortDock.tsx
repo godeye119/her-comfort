@@ -2,23 +2,13 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Music, Fingerprint, Cookie, 
-  Utensils, Coffee, Settings2, CloudSnow, 
-  Flower2, Sun, Leaf 
+  Utensils, Coffee 
 } from 'lucide-react';
-import { useSeasonStore, type Season } from '../../store/useSeasonStore';
 
 export const ComfortDock: React.FC = () => {
-  const { season: currentSeason, setSeason } = useSeasonStore();
   const [isPlaying, setIsPlaying] = useState(false);
   const [isSyncing, setIsSyncing] = useState(false);
-  const [activeMenu, setActiveMenu] = useState<'cravings' | 'seasons' | null>(null);
-
-  const seasons: { id: Season; icon: React.ReactNode; label: string }[] = [
-    { id: 'winter', icon: <CloudSnow size={18} strokeWidth={2.5} />, label: 'Winter' },
-    { id: 'spring', icon: <Flower2 size={18} strokeWidth={2.5} />, label: 'Spring' },
-    { id: 'summer', icon: <Sun size={18} strokeWidth={2.5} />, label: 'Summer' },
-    { id: 'autumn', icon: <Leaf size={18} strokeWidth={2.5} />, label: 'Autumn' },
-  ];
+  const [activeMenu, setActiveMenu] = useState<'cravings' | null>(null);
 
   const cravings = [
     { id: 'chocolate', label: 'Chocolate', icon: <Cookie size={18} strokeWidth={2.5} />, message: "I'm really craving some chocolate right now... 🍫" },
@@ -26,7 +16,7 @@ export const ComfortDock: React.FC = () => {
     { id: 'comfort', label: 'Comfort Food', icon: <Coffee size={18} strokeWidth={2.5} />, message: "I need some comfort food... 🍜" },
   ];
 
-  const toggleMenu = (menu: 'cravings' | 'seasons') => {
+  const toggleMenu = (menu: 'cravings') => {
     setActiveMenu(activeMenu === menu ? null : menu);
   };
 
@@ -39,38 +29,6 @@ export const ComfortDock: React.FC = () => {
     <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[300]">
       <div className="flex items-end gap-2 px-3 py-2 bg-white/10 backdrop-blur-2xl border border-white/20 rounded-[2.5rem] shadow-2xl">
         
-        {/* Season Selector */}
-        <div className="relative">
-          <DockIcon 
-            label="Cycle" 
-            active={activeMenu === 'seasons'}
-            onClick={() => toggleMenu('seasons')}
-          >
-            <Settings2 strokeWidth={2.5} fill={activeMenu === 'seasons' ? "currentColor" : "none"} fillOpacity={0.2} />
-          </DockIcon>
-          
-          <AnimatePresence>
-            {activeMenu === 'seasons' && (
-              <MenuContainer>
-                {seasons.map((s) => (
-                  <button
-                    key={s.id}
-                    onClick={() => { setSeason(s.id); setActiveMenu(null); }}
-                    className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
-                      currentSeason === s.id ? 'bg-white/20 text-white' : 'text-white/60 hover:bg-white/10 hover:text-white'
-                    }`}
-                  >
-                    {s.icon}
-                    <span className="text-xs font-bold uppercase tracking-widest">{s.label}</span>
-                  </button>
-                ))}
-              </MenuContainer>
-            )}
-          </AnimatePresence>
-        </div>
-
-        <div className="w-[1px] h-8 bg-white/10 mx-1 mb-2" />
-
         {/* Music Toggle */}
         <DockIcon 
           label={isPlaying ? "Mute" : "Play"} 

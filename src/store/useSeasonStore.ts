@@ -18,8 +18,8 @@ interface SeasonState {
 }
 
 export const useSeasonStore = create<SeasonState>((set) => ({
-  season: 'spring',
-  setSeason: (season) => set({ season }),
+  season: 'winter', // 🔒 Eternal Winter Mode - Locked
+  setSeason: () => {}, // Disabled - season switching removed
   winterState: 'idle',
   setWinterState: (state) => set({ winterState: state }),
   springState: 'idle',
