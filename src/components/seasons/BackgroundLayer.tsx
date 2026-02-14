@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { motion } from "framer-motion";
 
 export const BackgroundLayer: React.FC = () => {
   return (
@@ -8,20 +8,15 @@ export const BackgroundLayer: React.FC = () => {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1.5 }}
+          transition={{ duration: 0.8 }}
           className="absolute inset-0 w-full h-full"
         >
-          <motion.img
+          <img
             src="/backgrounds/winter.png"
             alt="Winter sanctuary landscape"
             className="absolute inset-0 w-full h-full object-cover"
-            initial={{ scale: 1 }}
-            animate={{ scale: [1, 1.02, 1] }}
-            transition={{ 
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
+            loading="eager"
+            fetchPriority="high"
           />
           {/* Subtle overlay for content readability */}
           <div className="absolute inset-0 bg-black/20" />

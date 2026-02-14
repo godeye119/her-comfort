@@ -196,9 +196,6 @@ export const WinterPhase: React.FC = () => {
         )}
         {showLetter && <LoveLetter onClose={() => setShowLetter(false)} />}
       </AnimatePresence>
-
-      {/* Sound System handled in a separate effect/component */}
-      <SoundSystem />
     </div>
   );
 };
@@ -927,23 +924,4 @@ const CompanionVoiceLines: React.FC = () => {
       )}
     </AnimatePresence>
   );
-};
-
-const SoundSystem: React.FC = () => {
-  const { winterState, isSoundEnabled } = useSeasonStore();
-
-  useEffect(() => {
-    if (!isSoundEnabled) return;
-
-    // Logic for sound transitions based on winterState
-    if (winterState === "comfort") {
-      // Fade in heartbeat
-      console.log("Sound: Fading in slow heartbeat...");
-    } else {
-      // Fade out
-      console.log("Sound: Fading out...");
-    }
-  }, [winterState, isSoundEnabled]);
-
-  return null;
 };
